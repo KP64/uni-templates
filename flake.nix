@@ -2,7 +2,7 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -22,12 +22,17 @@
       templates = {
         alpro = {
           path = ./alpro;
-          description = "1st Semester Alpro Template";
+          description = "1st Semester Alpro";
         };
 
         dzi = {
           path = ./dzi;
-          description = "3rd Semester dzi Template";
+          description = "3rd Semester dzi";
+        };
+
+        rdb = {
+          path = ./rdb;
+          description = "4th or 6th Semester rdb";
         };
       };
     }
