@@ -22,7 +22,7 @@
       in
       {
         packages.default = pkgs.stdenv.mkDerivation {
-          name = "alpro-template";
+          name = "main";
           src = self;
           buildPhase =
             let
