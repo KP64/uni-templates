@@ -53,7 +53,10 @@
             with pkgs;
             [
               clang-tools
+
               cmake
+              cmake-language-server
+
               codespell
               conan
               cppcheck
