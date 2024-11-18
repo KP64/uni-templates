@@ -53,6 +53,7 @@
             with pkgs;
             [
               clang-tools
+              lldb
 
               cmake
               cmake-language-server
