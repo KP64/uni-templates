@@ -1,5 +1,5 @@
 {
-  projectRootFile = ".git/config";
+  projectRootFile = "flake.nix";
 
   programs = {
     deadnix.enable = true;
