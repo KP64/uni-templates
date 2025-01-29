@@ -34,6 +34,11 @@
           path = ./rdb;
           description = "4th or 6th Semester rdb";
         };
+
+        ti = {
+          path = ./ti;
+          description = "1st Semester TI";
+        };
       };
     }
     // flake-utils.lib.eachDefaultSystem (
