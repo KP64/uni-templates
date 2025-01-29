@@ -52,7 +52,7 @@
             deadnix
             statix
             just
-            nil
+            nixd
             nix-melt
             nixfmt-rfc-style
           ];
