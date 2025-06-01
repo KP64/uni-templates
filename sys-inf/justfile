@@ -1,0 +1,5 @@
+compile:
+    javac src/Main.java
+
+mnemo: compile
+    javap -c src/Main

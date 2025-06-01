@@ -9,14 +9,8 @@
       strict = true;
     };
 
-    clang-format.enable = true;
+    google-java-format.enable = true;
 
     just.enable = true;
-
-    shfmt.enable = true;
-
-    typstyle.enable = true;
-
-    google-java-format.enable = true;
   };
 }

@@ -35,6 +35,11 @@
           description = "4th or 6th Semester rdb";
         };
 
+        sys-inf = {
+          path = ./sys-inf;
+          description = "2nd Semester Sys-Inf";
+        };
+
         ti = {
           path = ./ti;
           description = "1st Semester TI";
