@@ -2,6 +2,11 @@
   description = "A Nix-flake-based AlPro development environment";
 
   inputs = {
+    alpha-tui = {
+      url = "github:LMH01/alpha_tui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -25,15 +30,17 @@
       imports = [ inputs.treefmt-nix.flakeModule ];
 
       perSystem =
-        { pkgs, ... }:
+        { pkgs, system, ... }:
         {
           treefmt = ./treefmt.nix;
 
           devShells.default = pkgs.mkShell {
-            packages = with pkgs; [
-              jdk
-              just
-            ];
+            packages =
+              [ inputs.alpha-tui.packages.${system}.default ]
+              ++ (with pkgs; [
+                jdk
+                just
+              ]);
           };
         };
     };
