@@ -7,11 +7,7 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      flake-utils,
-      ...
-    }:
+    { nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -24,7 +20,7 @@
             xorg.libXxf86vm
             libGL
             maven
-            openjdk21
+            jdk
             scenebuilder
           ];
 

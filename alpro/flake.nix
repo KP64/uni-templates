@@ -22,9 +22,7 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        filesToCompile = [
-          "main"
-        ];
+        filesToCompile = [ "main" ];
 
         treefmt = (treefmt-nix.lib.evalModule pkgs ./treefmt.nix).config.build;
       in
@@ -42,34 +40,23 @@
               mkdir -p $out/bin
             ''
             + (pkgs.lib.concatLines (map (f: "cp ${f} $out/bin") filesToCompile));
-          nativeBuildInputs = with pkgs; [ clang ];
+          nativeBuildInputs = [ pkgs.clang ];
         };
 
         formatter = treefmt.wrapper;
         checks.formatting = treefmt.check self;
 
         devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
-          packages =
-            with pkgs;
-            [
-              clang-tools
-              lldb
+          packages = with pkgs; [
+            clang-tools
+            lldb
 
-              cmake
-              cmake-language-server
+            cmake
+            cmake-language-server
 
-              codespell
-              conan
-              cppcheck
-              doxygen
-              gtest
-              lcov
-              vcpkg
-              vcpkg-tool
-
-              just
-            ]
-            ++ (if system == "aarch64-darwin" then [ ] else [ gdb ]);
+            just
+            just-lsp
+          ];
         };
       }
     );

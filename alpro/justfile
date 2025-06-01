@@ -5,4 +5,4 @@ exec: compile
     @./result/bin/main
 
 main:
-  @$EDITOR src/main.cpp
+    @$EDITOR src/main.cpp
