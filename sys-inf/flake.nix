@@ -2,8 +2,10 @@
   description = "A Nix-flake-based AlPro development environment";
 
   inputs = {
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,29 +13,28 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      flake-utils,
-      treefmt-nix,
-    }:
-    flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "x86_64-linux"
+      ];
 
-        treefmt = (treefmt-nix.lib.evalModule pkgs ./treefmt.nix).config.build;
-      in
-      {
-        formatter = treefmt.wrapper;
-        checks.formatting = treefmt.check self;
+      imports = [ inputs.treefmt-nix.flakeModule ];
 
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            jdk
-            just
-          ];
+      perSystem =
+        { pkgs, ... }:
+        {
+          treefmt = ./treefmt.nix;
+
+          devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+              jdk
+              just
+            ];
+          };
         };
-      }
-    );
+    };
 }

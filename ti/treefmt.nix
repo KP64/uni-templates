@@ -1,6 +1,4 @@
 {
-  projectRootFile = "flake.nix";
-
   programs = {
     statix.enable = true;
     deadnix.enable = true;
@@ -8,6 +6,7 @@
       enable = true;
       strict = true;
     };
+
     typstyle.enable = true;
   };
 }

@@ -6,9 +6,5 @@
       enable = true;
       strict = true;
     };
-
-    google-java-format.enable = true;
-
-    just.enable = true;
   };
 }
