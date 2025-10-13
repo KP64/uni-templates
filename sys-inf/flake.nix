@@ -35,12 +35,13 @@
           treefmt = ./treefmt.nix;
 
           devShells.default = pkgs.mkShell {
-            packages =
-              [ inputs.alpha-tui.packages.${system}.default ]
-              ++ (with pkgs; [
-                jdk
-                just
-              ]);
+            packages = [
+              inputs.alpha-tui.packages.${system}.default
+            ]
+            ++ (with pkgs; [
+              jdk
+              just
+            ]);
           };
         };
     };

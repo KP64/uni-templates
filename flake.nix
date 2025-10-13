@@ -4,17 +4,12 @@
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
   outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "aarch64-darwin"
         "aarch64-linux"
@@ -22,7 +17,17 @@
         "x86_64-linux"
       ];
 
-      imports = [ inputs.treefmt-nix.flakeModule ];
+      imports = [ flake-parts.flakeModules.partitions ];
+
+      partitions.dev = {
+        extraInputsFlake = ./nix;
+        module.imports = [ ./nix ];
+      };
+      partitionedAttrs = {
+        checks = "dev";
+        devShells = "dev";
+        formatter = "dev";
+      };
 
       flake.templates = {
         alpro = {
@@ -50,18 +55,5 @@
           description = "1st Semester TI";
         };
       };
-
-      perSystem =
-        { pkgs, ... }:
-        {
-          treefmt = ./treefmt.nix;
-
-          devShells.default = pkgs.mkShell {
-            packages = with pkgs; [
-              just
-              nil
-            ];
-          };
-        };
     };
 }
