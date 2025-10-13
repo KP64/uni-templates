@@ -4,7 +4,7 @@
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -30,24 +30,17 @@
           treefmt = ./treefmt.nix;
 
           devShells.default = pkgs.mkShell {
-            venvDir = ".venv";
             packages = with pkgs; [
               nil
 
               just
               just-lsp
 
-              (python3.withPackages (
-                ps: with ps; [
+              (python313.withPackages (
+                pypkgs: with pypkgs; [
                   jupyter
-                  conda
-                  pip
-                  venvShellHook
-                  numpy
                   pandas
-                  # Doesn't compile for now
-                  # tensorflow
-                  toolz
+                  tensorflow
                 ]
               ))
             ];
