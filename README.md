@@ -8,7 +8,7 @@ for modules of the university of [Bonn](https://www.uni-bonn.de/en).
 1. Make sure your system has nix installed and [flakes](https://nixos.wiki/wiki/flakes) enabled.
 2. Go into the directory where you want to setup the template.
 3. run `nix flake init -t github:KP64/uni-templates#module` where `module` is the abbreviation of the module this template is for.
-4. Activate the devShell by running `direnv allow`
+4. Activate the devShell by running `nix develop`
 5. Enjoy :D
 
 ## Which modules are supported ⁉
