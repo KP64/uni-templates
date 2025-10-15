@@ -9,7 +9,7 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
