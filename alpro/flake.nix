@@ -27,21 +27,27 @@
       perSystem =
         { pkgs, ... }:
         {
-          treefmt = ./treefmt.nix;
+          treefmt.programs = {
+            deadnix.enable = true;
+            statix.enable = true;
+            nixfmt = {
+              enable = true;
+              strict = true;
+            };
+
+            cmake-format.enable = true;
+            clang-format.enable = true;
+          };
 
           devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
             packages = with pkgs; [
               nil
 
               lldb
-
               cmake
               cmake-language-server
 
               meteor-git
-
-              just
-              just-lsp
             ];
           };
         };

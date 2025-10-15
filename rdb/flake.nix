@@ -27,7 +27,14 @@
       perSystem =
         { pkgs, ... }:
         {
-          treefmt = ./treefmt.nix;
+          treefmt.programs = {
+            deadnix.enable = true;
+            statix.enable = true;
+            nixfmt = {
+              enable = true;
+              strict = true;
+            };
+          };
 
           devShells.default = pkgs.mkShell {
             buildInputs = with pkgs; [

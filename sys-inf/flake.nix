@@ -30,13 +30,24 @@
       imports = [ inputs.treefmt-nix.flakeModule ];
 
       perSystem =
-        { pkgs, system, ... }:
+        { inputs', pkgs, ... }:
         {
-          treefmt = ./treefmt.nix;
+          treefmt.programs = {
+            deadnix.enable = true;
+            statix.enable = true;
+            nixfmt = {
+              enable = true;
+              strict = true;
+            };
+
+            google-java-format.enable = true;
+
+            just.enable = true;
+          };
 
           devShells.default = pkgs.mkShell {
             packages = [
-              inputs.alpha-tui.packages.${system}.default
+              inputs'.alpha-tui.packages.default
             ]
             ++ (with pkgs; [
               jdk

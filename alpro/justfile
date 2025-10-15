@@ -1,8 +1,0 @@
-compile:
-    @nix build
-
-exec: compile
-    @./result/bin/main
-
-main:
-    @$EDITOR src/main.cpp

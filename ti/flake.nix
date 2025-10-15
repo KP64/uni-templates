@@ -71,7 +71,16 @@
         in
 
         {
-          treefmt = ./treefmt.nix;
+          treefmt.programs = {
+            statix.enable = true;
+            deadnix.enable = true;
+            nixfmt = {
+              enable = true;
+              strict = true;
+            };
+
+            typstyle.enable = true;
+          };
 
           checks = { inherit build-drv build-script watch-script; };
 

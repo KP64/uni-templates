@@ -27,7 +27,16 @@
       perSystem =
         { pkgs, ... }:
         {
-          treefmt = ./treefmt.nix;
+          treefmt.programs = {
+            deadnix.enable = true;
+            statix.enable = true;
+            nixfmt = {
+              enable = true;
+              strict = true;
+            };
+
+            just.enable = true;
+          };
 
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
