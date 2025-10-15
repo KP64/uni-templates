@@ -29,31 +29,19 @@
         formatter = "dev";
       };
 
-      flake.templates = {
-        alpro = {
-          path = ./alpro;
-          description = "1st Semester Alpro";
-        };
-
-        dzi = {
-          path = ./dzi;
-          description = "3rd Semester dzi";
-        };
-
-        rdb = {
-          path = ./rdb;
-          description = "4th or 6th Semester rdb";
-        };
-
-        sys-inf = {
-          path = ./sys-inf;
-          description = "2nd Semester Sys-Inf";
-        };
-
-        ti = {
-          path = ./ti;
-          description = "1st Semester TI";
-        };
-      };
+      flake.templates =
+        let
+          inherit (inputs.nixpkgs) lib;
+        in
+        lib.pipe ./. [
+          builtins.readDir
+          (lib.filterAttrs (name: value: name != "nix" && value == "directory"))
+          (builtins.mapAttrs (
+            name: _: rec {
+              path = ./${name};
+              inherit (import (path + /flake.nix)) description;
+            }
+          ))
+        ];
     };
 }

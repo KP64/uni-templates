@@ -1,5 +1,5 @@
 {
-  description = "A Nix-flake-based AlPro development environment";
+  description = "2nd Semester Sys-Inf";
 
   inputs = {
     alpha-tui = {

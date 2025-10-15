@@ -1,5 +1,5 @@
 {
-  description = "Nix flake for dzi dev";
+  description = "3rd Semester dzi";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";

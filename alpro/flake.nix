@@ -1,5 +1,5 @@
 {
-  description = "A Nix-flake-based AlPro development environment";
+  description = "1st Semester Alpro";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";

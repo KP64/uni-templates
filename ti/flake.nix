@@ -1,5 +1,5 @@
 {
-  description = "A Typst project";
+  description = "1st Semester TI";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

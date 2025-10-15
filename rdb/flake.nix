@@ -1,5 +1,5 @@
 {
-  description = "Nix flake for rdb dev";
+  description = "4th or 6th Semester rdb";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
