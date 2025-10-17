@@ -1,5 +1,5 @@
 {
-  description = "1st Semester TI";
+  description = "TI - Winter Semester";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";

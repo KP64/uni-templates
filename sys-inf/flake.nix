@@ -1,5 +1,5 @@
 {
-  description = "2nd Semester Sys-Inf";
+  description = "Sys-Inf - Sommer Semester";
 
   inputs = {
     alpha-tui = {

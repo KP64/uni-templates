@@ -1,5 +1,5 @@
 {
-  description = "1st Semester Alpro";
+  description = "Alpro - Winter Semester";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";

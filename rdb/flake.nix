@@ -1,5 +1,5 @@
 {
-  description = "4th or 6th Semester rdb";
+  description = "RDB - Sommer Semester";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
