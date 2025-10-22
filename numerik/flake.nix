@@ -45,8 +45,8 @@
               just
               just-lsp
 
-	      pandoc
-	      texliveFull
+              pandoc
+              texliveFull
 
               (python313.withPackages (
                 pypkgs: with pypkgs; [
