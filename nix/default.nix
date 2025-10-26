@@ -13,25 +13,14 @@
           strict = true;
         };
 
-        clang-format.enable = true;
-
-        just.enable = true;
-
         shellcheck.enable = true;
         shfmt.enable = true;
-
-        typstyle.enable = true;
-
-        google-java-format.enable = true;
       };
 
       devShells.default = pkgs.mkShell {
         name = "uni-templates";
 
-        packages = with pkgs; [
-          just
-          nil
-        ];
+        packages = [ pkgs.nil ];
       };
     };
 }
