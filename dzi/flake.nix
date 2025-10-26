@@ -36,7 +36,6 @@
               strict = true;
             };
 
-            just.enable = true;
             shellcheck.enable = true;
             shfmt.enable = true;
           };
@@ -46,9 +45,6 @@
 
             packages = with pkgs; [
               nil
-
-              just
-              just-lsp
 
               pandoc
               texliveFull
