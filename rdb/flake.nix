@@ -37,6 +37,8 @@
           };
 
           devShells.default = pkgs.mkShell {
+            name = "RDB";
+
             buildInputs = with pkgs; [
               xorg.libXtst
               xorg.libXxf86vm

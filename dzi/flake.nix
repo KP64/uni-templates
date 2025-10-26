@@ -39,6 +39,8 @@
           };
 
           devShells.default = pkgs.mkShell {
+            name = "DZI";
+
             packages = with pkgs; [
               nil
 

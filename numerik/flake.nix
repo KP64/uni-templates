@@ -39,6 +39,8 @@
           };
 
           devShells.default = pkgs.mkShell {
+            name = "numerik";
+
             packages = with pkgs; [
               nil
 

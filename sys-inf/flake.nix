@@ -46,6 +46,8 @@
           };
 
           devShells.default = pkgs.mkShell {
+            name = "Sys-Inf";
+
             packages = [
               inputs'.alpha-tui.packages.default
             ]

@@ -25,6 +25,8 @@
       };
 
       devShells.default = pkgs.mkShell {
+        name = "uni-templates";
+
         packages = with pkgs; [
           just
           nil

@@ -40,6 +40,8 @@
           };
 
           devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
+            name = "AlPro";
+
             packages = with pkgs; [
               nil
 

@@ -93,6 +93,8 @@
           };
 
           devShells.default = typixLib.devShell {
+            name = "TI";
+
             inherit (commonArgs) fontPaths virtualPaths;
             packages = [
               # WARNING: Don't run `typst-build` directly, instead use `nix run .#build`

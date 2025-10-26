@@ -41,6 +41,8 @@
           };
 
           devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
+            name = "SysProg";
+
             packages = with pkgs; [
               nil
 
