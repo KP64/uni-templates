@@ -35,10 +35,14 @@
           treefmt.programs = {
             deadnix.enable = true;
             statix.enable = true;
+            nixf-diagnose.enable = true;
             nixfmt = {
               enable = true;
               strict = true;
             };
+
+            shellcheck.enable = true;
+            shfmt.enable = true;
 
             google-java-format.enable = true;
 
@@ -53,7 +57,9 @@
             ]
             ++ (with pkgs; [
               jdk
+
               just
+              just-lsp
             ]);
           };
         };

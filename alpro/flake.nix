@@ -30,6 +30,7 @@
           treefmt.programs = {
             deadnix.enable = true;
             statix.enable = true;
+            nixf-diagnose.enable = true;
             nixfmt = {
               enable = true;
               strict = true;
@@ -37,6 +38,9 @@
 
             cmake-format.enable = true;
             clang-format.enable = true;
+
+            shellcheck.enable = true;
+            shfmt.enable = true;
           };
 
           devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {

@@ -74,10 +74,14 @@
           treefmt.programs = {
             statix.enable = true;
             deadnix.enable = true;
+            nixf-diagnose.enable = true;
             nixfmt = {
               enable = true;
               strict = true;
             };
+
+            shellcheck.enable = true;
+            shfmt.enable = true;
 
             typstyle.enable = true;
           };

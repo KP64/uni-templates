@@ -17,6 +17,7 @@
 
         just.enable = true;
 
+        shellcheck.enable = true;
         shfmt.enable = true;
 
         typstyle.enable = true;
