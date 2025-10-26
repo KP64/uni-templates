@@ -49,6 +49,8 @@
             packages = with pkgs; [
               nil
 
+              clang-tools
+
               lldb
               cmake
               cmake-language-server
