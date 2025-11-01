@@ -25,7 +25,7 @@
       imports = [ inputs.treefmt-nix.flakeModule ];
 
       perSystem =
-        { pkgs, ... }:
+        { lib, pkgs, ... }:
         {
           treefmt.programs = {
             deadnix.enable = true;
@@ -48,15 +48,25 @@
           devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
             name = "SysProg";
 
-            packages = with pkgs; [
-              nil
+            packages =
+              (with pkgs; [
+                nil
 
-              clang-tools
+                clang-tools
 
-              lldb
-              valgrind
-              nasm
-            ];
+                lldb
+                valgrind
+                nasm
+              ])
+              ++ lib.singleton (
+                pkgs.writeShellApplication {
+                  name = "gen-cc";
+                  runtimeInputs = [ pkgs.bear ];
+                  text = ''
+                    bear -- make
+                  '';
+                }
+              );
           };
         };
     };
