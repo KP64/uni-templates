@@ -9,13 +9,11 @@
 
   outputs =
     inputs@{ flake-parts, ... }:
+    let
+      inherit (inputs.nixpkgs) lib;
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "x86_64-linux"
-      ];
+      systems = lib.systems.flakeExposed;
 
       imports = [ flake-parts.flakeModules.partitions ];
 
@@ -29,19 +27,15 @@
         formatter = "dev";
       };
 
-      flake.templates =
-        let
-          inherit (inputs.nixpkgs) lib;
-        in
-        lib.pipe ./. [
-          builtins.readDir
-          (lib.filterAttrs (name: value: name != "nix" && value == "directory"))
-          (builtins.mapAttrs (
-            name: _: rec {
-              path = ./${name};
-              inherit (import (path + /flake.nix)) description;
-            }
-          ))
-        ];
+      flake.templates = lib.pipe ./. [
+        builtins.readDir
+        (lib.filterAttrs (name: value: name != "nix" && value == "directory"))
+        (builtins.mapAttrs (
+          name: _: rec {
+            path = ./${name};
+            inherit (import (path + /flake.nix)) description;
+          }
+        ))
+      ];
     };
 }
