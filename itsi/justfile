@@ -1,0 +1,2 @@
+main:
+    bear -- clang -Wall -Wextra -o main main.c
