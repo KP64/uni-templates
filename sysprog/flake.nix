@@ -38,7 +38,7 @@
 
             clang-format.enable = true;
             clang-tidy = {
-              enable = true;
+              enable = false;
               # TODO: You most likely want to include the compilation database here (compile_commands.json)
               # NOTE: A full path is needed. Therefore the below doesn't work.
               #       You could add it to Git as a workaround but this is HEAVILY DISCOURAGED.
@@ -52,9 +52,9 @@
             packages =
               (with pkgs; [
                 nil
-
                 clang-tools
 
+                gdb
                 lldb
                 valgrind
                 nasm
