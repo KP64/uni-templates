@@ -80,12 +80,10 @@
             shfmt.enable = true;
 
             clang-format.enable = true;
+            # TODO: Configure
             clang-tidy = {
-              enable = true;
-              # TODO: You most likely want to include the compilation database here (compile_commands.json)
-              # NOTE: A full path is needed. Therefore the below doesn't work.
-              #       You could add it to Git as a workaround but this is HEAVILY DISCOURAGED.
-              # compileCommandsPath = ./compile_commands.json;
+              enable = false;
+              compileCommandsPath = "compile_commands.json";
             };
           };
           checks = { inherit build-drv build-script watch-script; };

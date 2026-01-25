@@ -33,6 +33,11 @@
 
             cmake-format.enable = true;
             clang-format.enable = true;
+            # TODO: Configure
+            clang-tidy = {
+              enable = false;
+              compileCommandsPath = "compile_commands.json";
+            };
 
             shellcheck.enable = true;
             shfmt.enable = true;
