@@ -1,0 +1,8 @@
+.direnv
+result
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
