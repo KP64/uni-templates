@@ -43,7 +43,7 @@
             packages =
               let
                 # NOTE: Add tex packages here if you have to
-                tex = pkgs.texliveFull.withPackages (ps: [ ]);
+                tex = pkgs.texliveFull.withPackages (_texpkgs: [ ]);
               in
               [
                 pkgs.nil
