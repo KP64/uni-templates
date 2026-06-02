@@ -5,7 +5,13 @@
     but do not appear in consumers' lock files.
   '';
 
-  inputs.treefmt-nix.url = "github:numtide/treefmt-nix";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
   # This flake is only used for its inputs.
   outputs = _: { };

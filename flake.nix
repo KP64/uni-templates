@@ -33,7 +33,7 @@
         (builtins.mapAttrs (
           name: _: rec {
             path = ./${name};
-            inherit (import (path + /flake.nix)) description;
+            inherit (import "${path}/flake.nix") description;
           }
         ))
       ];
