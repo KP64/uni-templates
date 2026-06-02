@@ -19,54 +19,52 @@
 
       imports = [ inputs.treefmt-nix.flakeModule ];
 
-      perSystem =
-        { lib, pkgs, ... }:
-        {
-          treefmt.programs = {
-            deadnix.enable = true;
-            statix.enable = true;
-            nixf-diagnose.enable = true;
-            nixfmt = {
-              enable = true;
-              strict = true;
-            };
-
-            shellcheck.enable = true;
-            shfmt.enable = true;
-
-            asmfmt.enable = true;
-
-            clang-format.enable = true;
-            # TODO: Configure
-            clang-tidy = {
-              enable = false;
-              compileCommandsPath = "compile_commands.json";
-            };
+      perSystem = { lib, pkgs, ... }: {
+        treefmt.programs = {
+          deadnix.enable = true;
+          statix.enable = true;
+          nixf-diagnose.enable = true;
+          nixfmt = {
+            enable = true;
+            strict = true;
           };
 
-          devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
-            name = "SysProg";
+          shellcheck.enable = true;
+          shfmt.enable = true;
 
-            packages =
-              (with pkgs; [
-                nil
-                clang-tools
+          asmfmt.enable = true;
 
-                gdb
-                lldb
-                valgrind
-                nasm
-              ])
-              ++ lib.singleton (
-                pkgs.writeShellApplication {
-                  name = "gen-cc";
-                  runtimeInputs = [ pkgs.bear ];
-                  text = ''
-                    bear -- make
-                  '';
-                }
-              );
+          clang-format.enable = true;
+          # TODO: Configure
+          clang-tidy = {
+            enable = false;
+            compileCommandsPath = "compile_commands.json";
           };
         };
+
+        devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
+          name = "SysProg";
+
+          packages =
+            (with pkgs; [
+              nil
+              clang-tools
+
+              gdb
+              lldb
+              valgrind
+              nasm
+            ])
+            ++ lib.singleton (
+              pkgs.writeShellApplication {
+                name = "gen-cc";
+                runtimeInputs = [ pkgs.bear ];
+                text = ''
+                  bear -- make
+                '';
+              }
+            );
+        };
+      };
     };
 }

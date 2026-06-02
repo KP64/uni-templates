@@ -24,39 +24,37 @@
 
       imports = [ inputs.treefmt-nix.flakeModule ];
 
-      perSystem =
-        { inputs', pkgs, ... }:
-        {
-          treefmt.programs = {
-            deadnix.enable = true;
-            statix.enable = true;
-            nixf-diagnose.enable = true;
-            nixfmt = {
-              enable = true;
-              strict = true;
-            };
-
-            shellcheck.enable = true;
-            shfmt.enable = true;
-
-            google-java-format.enable = true;
-
-            just.enable = true;
+      perSystem = { inputs', pkgs, ... }: {
+        treefmt.programs = {
+          deadnix.enable = true;
+          statix.enable = true;
+          nixf-diagnose.enable = true;
+          nixfmt = {
+            enable = true;
+            strict = true;
           };
 
-          devShells.default = pkgs.mkShell {
-            name = "Sys-Inf";
+          shellcheck.enable = true;
+          shfmt.enable = true;
 
-            packages = [
-              inputs'.alpha-tui.packages.default
-            ]
-            ++ (with pkgs; [
-              jdk
+          google-java-format.enable = true;
 
-              just
-              just-lsp
-            ]);
-          };
+          just.enable = true;
         };
+
+        devShells.default = pkgs.mkShell {
+          name = "Sys-Inf";
+
+          packages = [
+            inputs'.alpha-tui.packages.default
+          ]
+          ++ (with pkgs; [
+            jdk
+
+            just
+            just-lsp
+          ]);
+        };
+      };
     };
 }

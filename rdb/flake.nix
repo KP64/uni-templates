@@ -19,37 +19,35 @@
 
       imports = [ inputs.treefmt-nix.flakeModule ];
 
-      perSystem =
-        { pkgs, ... }:
-        {
-          treefmt.programs = {
-            deadnix.enable = true;
-            statix.enable = true;
-            nixf-diagnose.enable = true;
-            nixfmt = {
-              enable = true;
-              strict = true;
-            };
-
-            shellcheck.enable = true;
-            shfmt.enable = true;
+      perSystem = { pkgs, ... }: {
+        treefmt.programs = {
+          deadnix.enable = true;
+          statix.enable = true;
+          nixf-diagnose.enable = true;
+          nixfmt = {
+            enable = true;
+            strict = true;
           };
 
-          devShells.default = pkgs.mkShell {
-            name = "RDB";
-
-            buildInputs = with pkgs; [
-              xorg.libXtst
-              xorg.libXxf86vm
-              libGL
-              maven
-              openjdk21
-              scenebuilder
-            ];
-
-            LD_LIBRARY_PATH = "${pkgs.xorg.libXtst}/lib/:${pkgs.xorg.libXxf86vm}/lib/:${pkgs.libGL}/lib/";
-          };
+          shellcheck.enable = true;
+          shfmt.enable = true;
         };
+
+        devShells.default = pkgs.mkShell {
+          name = "RDB";
+
+          buildInputs = with pkgs; [
+            xorg.libXtst
+            xorg.libXxf86vm
+            libGL
+            maven
+            openjdk21
+            scenebuilder
+          ];
+
+          LD_LIBRARY_PATH = "${pkgs.xorg.libXtst}/lib/:${pkgs.xorg.libXxf86vm}/lib/:${pkgs.libGL}/lib/";
+        };
+      };
 
     };
 }

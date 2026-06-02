@@ -19,45 +19,43 @@
 
       imports = [ inputs.treefmt-nix.flakeModule ];
 
-      perSystem =
-        { pkgs, ... }:
-        {
-          treefmt.programs = {
-            deadnix.enable = true;
-            statix.enable = true;
-            nixf-diagnose.enable = true;
-            nixfmt = {
-              enable = true;
-              strict = true;
-            };
-
-            cmake-format.enable = true;
-            clang-format.enable = true;
-            # TODO: Configure
-            clang-tidy = {
-              enable = false;
-              compileCommandsPath = "compile_commands.json";
-            };
-
-            shellcheck.enable = true;
-            shfmt.enable = true;
+      perSystem = { pkgs, ... }: {
+        treefmt.programs = {
+          deadnix.enable = true;
+          statix.enable = true;
+          nixf-diagnose.enable = true;
+          nixfmt = {
+            enable = true;
+            strict = true;
           };
 
-          devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
-            name = "AlPro";
-
-            packages = with pkgs; [
-              nil
-
-              clang-tools
-
-              lldb
-              cmake
-              cmake-language-server
-
-              meteor-git
-            ];
+          cmake-format.enable = true;
+          clang-format.enable = true;
+          # TODO: Configure
+          clang-tidy = {
+            enable = false;
+            compileCommandsPath = "compile_commands.json";
           };
+
+          shellcheck.enable = true;
+          shfmt.enable = true;
         };
+
+        devShells.default = pkgs.mkShell.override { stdenv = pkgs.clangStdenv; } {
+          name = "AlPro";
+
+          packages = with pkgs; [
+            nil
+
+            clang-tools
+
+            lldb
+            cmake
+            cmake-language-server
+
+            meteor-git
+          ];
+        };
+      };
     };
 }

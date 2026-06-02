@@ -19,37 +19,35 @@
 
       imports = [ inputs.treefmt-nix.flakeModule ];
 
-      perSystem =
-        { pkgs, ... }:
-        {
-          treefmt.programs = {
-            deadnix.enable = true;
-            statix.enable = true;
-            nixf-diagnose.enable = true;
-            nixfmt = {
-              enable = true;
-              strict = true;
-            };
-
-            shellcheck.enable = true;
-            shfmt.enable = true;
-
-            texfmt.enable = true;
+      perSystem = { pkgs, ... }: {
+        treefmt.programs = {
+          deadnix.enable = true;
+          statix.enable = true;
+          nixf-diagnose.enable = true;
+          nixfmt = {
+            enable = true;
+            strict = true;
           };
 
-          devShells.default = pkgs.mkShell {
-            name = "NetSi";
+          shellcheck.enable = true;
+          shfmt.enable = true;
 
-            packages =
-              let
-                # NOTE: Add tex packages here if you have to
-                tex = pkgs.texliveFull.withPackages (_texpkgs: [ ]);
-              in
-              [
-                pkgs.nil
-                tex
-              ];
-          };
+          texfmt.enable = true;
         };
+
+        devShells.default = pkgs.mkShell {
+          name = "NetSi";
+
+          packages =
+            let
+              # NOTE: Add tex packages here if you have to
+              tex = pkgs.texliveFull.withPackages (_texpkgs: [ ]);
+            in
+            [
+              pkgs.nil
+              tex
+            ];
+        };
+      };
     };
 }

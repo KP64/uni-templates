@@ -19,41 +19,39 @@
 
       imports = [ inputs.treefmt-nix.flakeModule ];
 
-      perSystem =
-        { pkgs, ... }:
-        {
-          treefmt.programs = {
-            deadnix.enable = true;
-            statix.enable = true;
-            nixf-diagnose.enable = true;
-            nixfmt = {
-              enable = true;
-              strict = true;
-            };
-
-            shellcheck.enable = true;
-            shfmt.enable = true;
+      perSystem = { pkgs, ... }: {
+        treefmt.programs = {
+          deadnix.enable = true;
+          statix.enable = true;
+          nixf-diagnose.enable = true;
+          nixfmt = {
+            enable = true;
+            strict = true;
           };
 
-          devShells.default = pkgs.mkShell {
-            name = "numerik";
-
-            packages = with pkgs; [
-              nil
-
-              pandoc
-              texliveFull
-
-              (python313.withPackages (
-                pypkgs: with pypkgs; [
-                  jupyter
-                  matplotlib
-                  numpy
-                  scipy
-                ]
-              ))
-            ];
-          };
+          shellcheck.enable = true;
+          shfmt.enable = true;
         };
+
+        devShells.default = pkgs.mkShell {
+          name = "numerik";
+
+          packages = with pkgs; [
+            nil
+
+            pandoc
+            texliveFull
+
+            (python313.withPackages (
+              pypkgs: with pypkgs; [
+                jupyter
+                matplotlib
+                numpy
+                scipy
+              ]
+            ))
+          ];
+        };
+      };
     };
 }
