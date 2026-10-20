@@ -1,0 +1,50 @@
+{
+  description = "ModKrypt - Winter Semester";
+
+  inputs = {
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = inputs.nixpkgs.lib.systems.flakeExposed;
+
+      imports = [ inputs.treefmt-nix.flakeModule ];
+
+      perSystem = { pkgs, ... }: {
+        treefmt.programs = {
+          deadnix.enable = true;
+          statix.enable = true;
+          nixf-diagnose.enable = true;
+          nixfmt = {
+            enable = true;
+            strict = true;
+          };
+
+          shellcheck.enable = true;
+          shfmt.enable = true;
+
+          ruff-check.enable = true;
+          ruff-format.enable = true;
+        };
+
+        devShells.default = pkgs.mkShell {
+          name = "ModKrypt";
+
+          packages = with pkgs; [
+            nil
+
+            python314
+          ];
+        };
+      };
+    };
+}
